@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block main%}
+{% load crispy_forms_tags %}
+<table class="table mt-5">
+  <thead>
+    <tr>
+      <th scope="col">ID сотрудника</th>
+      <th scope="col">ФИО</th>
+      <th scope="col">Текущая должность</th>
+      <th scope="col">Текущий отдел</th>
+      <th scope="col">Пришел на работу</th>
+      <th scope="col">Стаж</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+   {% for employee in employees %}
+    <tr>
+      <th scope="row">{{employee.id}}</th>
+      <td>{{employee.full_name}}</td>
+      <td>{{employee.position.position_name}}</td>
+      <td>{{employee.subdivision.subdivision_name}}</td>
+      <td>{{employee.started_work_date}}</td>
+      <td>{{employee.experience}}</td>
+       <input type="hidden" name="postset_id" value="{{ employee.id }}">
+      <td><a type="button" class="btn btn-info" href="{% url 'employees_detail' id=employee.id%}">Подробнее</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<h1 class="page-header text-center">Создание и удаление сотрудников</h1>
+<div class="col-md-6 offset-md-3">
+<form action="{% url 'employees' %}" method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" class="btn btn-success btn-block" value="Создать">
+    </form>
+</div>
+
+<div class="col-md-6 offset-md-3 mt-5">
+<form action="{% url 'employees_delete' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" class="form-control" placeholder="Введите ID сотрудника для удаления" name="id">
+        <input type="submit" class="btn btn-danger btn-block mt-3" value="Удалить">
+    </form>
+</div>
+{% endblock main%}

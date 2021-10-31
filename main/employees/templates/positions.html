@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block main%}
+
+<h1 class="page-header text-center">Справочник должностей</h1>
+
+
+<table class="table mt-5">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Название должности</th>
+    </tr>
+  </thead>
+  <tbody>
+   {% for position in positions %}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{position.position_name}}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<h1 class="page-header text-center">Создание должностей</h1>
+<div class="col-md-6 offset-md-3">
+<form action="{% url 'positions' %}" method="POST" class="mt-5">
+  {% csrf_token %}
+  <div class="form-group">
+  <input type="text" class="form-control" name="position_name" placeholder="Название должности">
+  <input type="submit" class="btn btn-success btn-block mb-3 mt-2" value="Создать">
+  </div>
+</form>
+</div>
+{% endblock main %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block main%}
+{% load crispy_forms_tags %}
+<h1 class="page-header text-center">Карточка сотрудника</h1>
+
+<div class="card text-center mt-5">
+  <div class="card-header">
+    {{employee.full_name}}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{employee.subdivision.subdivision_name}}</h5>
+    <p class="card-text">{{employee.position.position_name}}.</p>
+
+  </div>
+  <div class="card-footer text-muted">
+    <p class="card-text">Стаж: {% if employee.experience < 1 %} меньше 1 года
+    {% else %}
+    {{employee.experience}} год(а)
+
+      {% endif %}</p>
+  </div>
+</div>
+
+
+<div class="col-md-6 offset-md-3">
+<form action="" method="POST" class="mt-5">
+  {% csrf_token %}
+  <div class="form-group">
+  {{ form|crispy }}
+  <input type="submit" class="btn btn-info btn-block mb-3 mt-2" value="Изменить">
+  </div>
+</form>
+</div>
+
+<div class="col-md-6 offset-md-3">
+<form action="" method="POST" class="mt-5">
+  {% csrf_token %}
+  <div class="form-group">
+  {{ form2|crispy }}
+  <input type="submit" class="btn btn-info btn-block mb-3 mt-2" value="Изменить">
+  </div>
+</form>
+</div>
+{% endblock main %}

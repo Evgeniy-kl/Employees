@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block main%}
+<table class="table mt-5">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Название подразделения</th>
+    </tr>
+  </thead>
+  <tbody>
+   {% for subdivision in subdivisions %}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{subdivision.subdivision_name}}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<h1 class="page-header text-center">Создание и удаление подразделений предприятия</h1>
+<div class="col-md-6 offset-md-3">
+<form action="{% url 'subdivisions' %}" method="POST" class="mt-5">
+  {% csrf_token %}
+  <input type="text" class="form-control" name="subdivision_name" placeholder="Название подразделения для создания">
+  <input type="submit" class="btn btn-success btn-block mb-3 mt-2" value="Создать">
+</form>
+</div>
+
+<div class="col-md-6 offset-md-3">
+<form action="{% url 'subdivisions_delete' %}" method="POST" class="mt-5">
+  {% csrf_token %}
+  <input type="text" class="form-control" name="subdivision_name" placeholder="Название подразделения для удаления">
+  <input type="submit" class="btn btn-danger btn-block mb-3 mt-2" value="Удалить">
+</form>
+</div>
+{% endblock main%}
