@@ -13,7 +13,6 @@
         <a class="p-2 text-dark" href="{% url 'positions' %}">Справочник должностей</a>
         <a class="p-2 text-dark" href="{% url 'subdivisions' %}">Подразделения</a>
         <a class="p-2 text-dark" href="{% url 'employees' %}">Сотрудники</a>
-        <a class="p-2 text-dark"> {{ request.user.username }}</a>
         <a href="{% url 'logout' %}" class="p-2 text-dark">Выйти</a>
                         {% endif %}
 

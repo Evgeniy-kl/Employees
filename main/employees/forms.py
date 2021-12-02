@@ -119,5 +119,3 @@ class LoginForm(forms.ModelForm):
             if not user.check_password(password):
                 raise forms.ValidationError("Неверный пароль")
         return self.cleaned_data
-
-

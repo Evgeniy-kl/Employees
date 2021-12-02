@@ -31,7 +31,7 @@
 
 <h1 class="page-header text-center">Создание и удаление сотрудников</h1>
 <div class="col-md-6 offset-md-3">
-<form action="{% url 'employees' %}" method="POST">
+<form action="{% url 'employees' %}" method="POST" class="form">
         {% csrf_token %}
         {{ form|crispy }}
         <input type="submit" class="btn btn-success btn-block" value="Создать">

@@ -92,7 +92,7 @@ class EmployeesView(LoginRequiredMixin, View):
         form = EmployeeForm(request.POST or None)
         context = {
             'form': form,
-            'employees': Employee.objects.all(),
+            'employees': Employee.objects.select_related('subdivision', 'position').all(),
         }
         return render(request, 'employees.html', context)
 
@@ -103,7 +103,7 @@ class EmployeesView(LoginRequiredMixin, View):
             subdivision = form.cleaned_data['subdivision']
             position = form.cleaned_data['position']
             started_work_date = form.cleaned_data['started_work_date']
-            experience = datetime.date.today().year-started_work_date.year
+            experience = datetime.date.today().year - started_work_date.year
             Employee.objects.create(
                 full_name=full_name,
                 subdivision=subdivision,

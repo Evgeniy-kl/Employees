@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
-{% block main%}
 {% load crispy_forms_tags %}
+{% block main%}
 <h1 class="page-header text-center">Карточка сотрудника</h1>
 
 <div class="card text-center mt-5">
@@ -26,6 +26,7 @@
 <form action="" method="POST" class="mt-5">
   {% csrf_token %}
   <div class="form-group">
+    {% csrf_token %}
   {{ form|crispy }}
   <input type="submit" class="btn btn-info btn-block mb-3 mt-2" value="Изменить">
   </div>

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block main%}
 <table class="table mt-5">
   <thead>
@@ -27,7 +28,7 @@
 </div>
 
 <div class="col-md-6 offset-md-3">
-<form action="{% url 'subdivisions_delete' %}" method="POST" class="mt-5">
+<form action="{% url 'subdivisions_delete' %}" method="POST" class="mt-5 form">
   {% csrf_token %}
   <input type="text" class="form-control" name="subdivision_name" placeholder="Название подразделения для удаления">
   <input type="submit" class="btn btn-danger btn-block mb-3 mt-2" value="Удалить">
